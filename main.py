@@ -1,10 +1,11 @@
 from telethon.sync import TelegramClient, events
 import yt_dlp
+import os
 
 # Telegram API credentials
 api_id = 11319462
 api_hash = '155d33dec6ee17ca6135c0a6e01c1129'
-bot_token = 'YOUR_BOT_TOKEN'  # Replace with your bot token
+bot_token = '5718397874:AAGZ4377Gvc7eqUY6xhT6bJfLozoyJNU8ME'  # Replace with your bot token
 
 # Initialize the Telethon client
 client = TelegramClient('bot_session', api_id, api_hash)
@@ -30,7 +31,7 @@ async def process_video_link(event):
     chat_id = message.chat_id
     text = message.text
     
-    if text.startswith('https://www.youtube.com/') or text.startswith('https://youtu.be/'):
+    if text.startswith('https://'):
         ydl_opts = {
             'format': 'best',
             'outtmpl': 'downloads/%(title)s.%(ext)s',
@@ -51,7 +52,7 @@ async def process_video_link(event):
             duration_formatted = format_duration(int(info_dict['duration']))
             
             # Update the message to display video information
-            video_info = f"Video Downloaded:\nTitle: {info_dict['title']}\nDuration: {duration_formatted}"
+            video_info = f"`Video Downloaded:\nTitle: {info_dict['title']}\nDuration: {duration_formatted}`"
             await client.edit_message(chat_id, uploading_message.id, video_info)
             
             # Remove the downloaded video from storage

@@ -1,6 +1,7 @@
+import os
+os.system('pip install telethon yt_dlp')
 from telethon.sync import TelegramClient, events
 import yt_dlp
-import os
 
 api_id = 11319462
 api_hash = '155d33dec6ee17ca6135c0a6e01c1129'

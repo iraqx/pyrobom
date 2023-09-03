@@ -59,12 +59,3 @@ async def process_video_link(event):
 
 client.start(bot_token=bot_token)
 client.run_until_disconnected()
-age.id, video_info)
-            
-            # Remove the downloaded video from storage
-            os.remove(video_path)
-            
-
-# Start the bot
-client.start(bot_token=bot_token)
-client.run_until_disconnected()

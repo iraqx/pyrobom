@@ -1,5 +1,4 @@
 import os
-os.system('pip install telethon yt_dlp')
 from telethon.sync import TelegramClient, events
 import yt_dlp
 

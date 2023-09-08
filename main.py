@@ -21,7 +21,7 @@ async def process_video_link(event):
 
     if text.startswith('https://'):
         ydl_opts = {
-            'format': 'bestvideo+bestaudio/best',  # Get the best quality video
+            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',  # Get the best quality MP4 video
             'outtmpl': 'downloads/%(id)s.%(ext)s',  # Save with ID as filename
         }
 
@@ -30,7 +30,7 @@ async def process_video_link(event):
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(text, download=True)
-            video_path = os.path.join('downloads', info_dict['id'] + '.' + info_dict['ext'])
+            video_path = os.path.join('downloads', info_dict['id'] + '.' + 'mp4')
 
             # Replace the "Downloading..." message with "Uploading..."
             uploading_message = await client.edit_message(chat_id, downloading_message.id, f"`Uploading...`")
@@ -44,6 +44,5 @@ async def process_video_link(event):
 
             # Delete the "Uploading..." message
             await client.delete_messages(chat_id, [uploading_message.id])
-            
 client.start(bot_token=bot_token)
 client.run_until_disconnected()

@@ -44,8 +44,6 @@ async def process_video_link(event):
 
             # Delete the "Uploading..." message
             await client.delete_messages(chat_id, [uploading_message.id])
-    else:
-        await client.send_message(chat_id, f"`Please send a valid link`")
-
+            
 client.start(bot_token=bot_token)
 client.run_until_disconnected()

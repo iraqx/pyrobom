@@ -6,7 +6,7 @@ from yt_dlp import YoutubeDL
 api_id = 11319462
 api_hash = '155d33dec6ee17ca6135c0a6e01c1129'
 bot_token = '5718397874:AAGwjNGnv95LuBANzYOuGi4tu1CGe1e9r-c'
-app = Client("uuhhbot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
+app = Client("uhhbot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
 @app.on_message(filters.command("start"))
 def start_command_handler(client: Client, message: Message):

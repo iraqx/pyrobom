@@ -30,9 +30,10 @@ def download_video(url: str, message: Message):
             info = ydl.extract_info(url, download=True)
             video_id = info.get('id', None)
             if video_id:
-                video_file = f"/down/{video_id}.mp4"
+                video_file = f"{video_id}.mp4"
                 message.reply_video(video_file, quote=True)
                 downloading_message.delete()
+                os.remove(video_file)
                 
             else:
                 downloading_message.delete()

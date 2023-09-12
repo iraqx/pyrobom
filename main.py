@@ -30,7 +30,7 @@ def download_video(url: str, message: Message):
             info = ydl.extract_info(url, download=True)
             video_id = info.get('id', None)
             if video_id:
-                video_file = f"/sdcard/py/downloads/{video_id}.mp4"
+                video_file = f"/down/{video_id}.mp4"
                 message.reply_video(video_file, quote=True)
                 downloading_message.delete()
                 
@@ -57,14 +57,5 @@ def help_command(client: Client, message: Message):
 @app.on_message(filters.regex(r".+"))
 def unsupported_url_handler(client: Client, message: Message):
     message.reply_text("`This link is not supported.`",quote=True)
-#try:
-#	os.remove(tt)
-#except:
-#	u=1
-#ttj="/sdcard/py/bot.session-journal"
-#try:
-#	os.remove(ttj)
-#except:
-#	e=1
 server()
 app.run()

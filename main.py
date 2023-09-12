@@ -57,9 +57,6 @@ def help_command(client: Client, message: Message):
 @app.on_message(filters.regex(r".+"))
 def unsupported_url_handler(client: Client, message: Message):
     message.reply_text("`This link is not supported.`",quote=True)
-G = "\033[1;32m"
-print(f'~ bot is {G}active')
-tt=f"/sdcard/py/bot.session"
 #try:
 #	os.remove(tt)
 #except:
@@ -69,9 +66,4 @@ tt=f"/sdcard/py/bot.session"
 #	os.remove(ttj)
 #except:
 #	e=1
-app.run()
-y:
-	os.remove(ttj)
-except:
-	e=1
 app.run()

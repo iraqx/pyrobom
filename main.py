@@ -36,11 +36,13 @@ def download_video(url: str, message: Message):
                 os.remove(video_file)
                 
             else:
+                os.remove(video_file)
                 downloading_message.delete()
                 downloading_message.reply_text("`An error occurred while downloading the video.`")
         except Exception as e:
             error_message = f"`An error occurred: {str(e)}`"
             downloading_message.delete()
+            os.remove(video_file)
             message.reply_text(error_message, quote=True)
 
 @app.on_message(filters.command("start"))

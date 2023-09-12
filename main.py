@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from yt_dlp import YoutubeDL
 import concurrent.futures
 import asyncio
-
+from server import server
 api_id = 11319462
 api_hash = '155d33dec6ee17ca6135c0a6e01c1129'
 bot_token = '5718397874:AAGwjNGnv95LuBANzYOuGi4tu1CGe1e9r-c'
@@ -66,4 +66,5 @@ def unsupported_url_handler(client: Client, message: Message):
 #	os.remove(ttj)
 #except:
 #	e=1
+server()
 app.run()

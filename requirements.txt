@@ -1,3 +1,3 @@
-pyrogram
-yt-dlp
-pysndfx
+telebot
+pytube
+requests

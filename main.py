@@ -4,7 +4,7 @@ import telebot
 from telebot import types
 
 # Replace 'YOUR_BOT_TOKEN' with your actual Telegram bot token
-TOKEN = '5781017151:AAH3ErhLd1Up3ig_-yyNF4ys9KWZnYhRlVA'
+TOKEN = '5592617691:AAERAxQObOrhKplL2Ng2gRY4cYYuTZETQhE'
 
 bot = telebot.TeleBot(TOKEN)
 

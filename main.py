@@ -60,7 +60,7 @@ with app:
     file_path = 'YouTube-premium.apk'
     caption = f'''
 size : [`{os.path.getsize(file_path) / (1024 * 1024):.2f} MB`]
-version : '''
+version : `[{ver}]`'''
 
     app.send_document(chat_id=chat_id, document=file_path, caption=caption)
     os.remove(file_path)

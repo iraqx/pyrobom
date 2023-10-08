@@ -1,5 +1,7 @@
+import os
+os.system("pip3 install -r requirements.txt")
 from pyrogram import Client
-import os,requests
+import requests
 from bs4 import BeautifulSoup
 import re
 def get_app_version(url):

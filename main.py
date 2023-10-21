@@ -1,36 +1,32 @@
 import os
-os.system("pip install pyrogram yt_dlp")
+import shutil
 import pyrogram
-import yt_dlp
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from yt_dlp import YoutubeDL
-import concurrent.futures
 import asyncio
 
 api_id = 11319462
 api_hash = '155d33dec6ee17ca6135c0a6e01c1129'
 bot_token = "5718397874:AAF09k95kIaD0W5rRSgmNa1gtwKs56WzIAU"
 app = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
-import shutil
-
 folder_path = "/temp"
+
 try:
     shutil.rmtree(folder_path)
-except:
-    pass
+except Exception as e:
+    print(f"Error while removing folder: {e}")
 
 @app.on_message(filters.regex(r"(?i)^(https?://).+$"))
 async def http_url_handler(client: Client, message: Message):
     url = message.text.strip()
     loop = asyncio.get_event_loop()
     await loop.run_in_executor(None, download_video, url, message)
-        
-        
+
 def download_video(url: str, message: Message):
     ydl_opts = {
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-        'outtmpl': '%(id)s.%(ext)s',
+        'outtmpl': '/temp/%(id)s.%(ext)s',  # Adjusted file path here
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:
@@ -42,12 +38,11 @@ def download_video(url: str, message: Message):
                 message.reply_video(video_file, quote=True)
                 downloading_message.delete()
                 os.remove(video_file)
-                
             else:
                 downloading_message.delete()
                 downloading_message.reply_text("`An error occurred while downloading the video.`")
         except Exception as e:
-            error_message = f"An error occurred:`{str(e)}`"
+            error_message = f"An error occurred: `{str(e)}`"
             downloading_message.delete()
             message.reply_text(error_message, quote=True)
 
@@ -66,6 +61,7 @@ def help_command(client: Client, message: Message):
 @app.on_message(filters.regex(r".+"))
 def unsupported_url_handler(client: Client, message: Message):
     message.reply_text("`This link is not supported.`",quote=True)
+
 G = "\033[1;32m"
 print(f'~ bot is {G}active')
 app.run()

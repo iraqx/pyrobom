@@ -19,7 +19,7 @@ async def http_url_handler(client: Client, message: Message):
 def download_video(url: str, message: Message):
     ydl_opts = {
         'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-        'outtmpl': '/temp/%(id)s.%(ext)s',  # Adjusted file path here
+        'outtmpl': '%(id)s.%(ext)s',  # Adjusted file path here
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:

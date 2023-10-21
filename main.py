@@ -10,13 +10,6 @@ api_id = 11319462
 api_hash = '155d33dec6ee17ca6135c0a6e01c1129'
 bot_token = "5718397874:AAF09k95kIaD0W5rRSgmNa1gtwKs56WzIAU"
 app = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
-folder_path = "/temp"
-
-try:
-    shutil.rmtree(folder_path)
-except Exception as e:
-    print(f"Error while removing folder: {e}")
-
 @app.on_message(filters.regex(r"(?i)^(https?://).+$"))
 async def http_url_handler(client: Client, message: Message):
     url = message.text.strip()
@@ -34,7 +27,7 @@ def download_video(url: str, message: Message):
             info = ydl.extract_info(url, download=True)
             video_id = info.get('id', None)
             if video_id:
-                video_file = f"/temp/{video_id}.mp4"
+                video_file = f"{video_id}.mp4"
                 message.reply_video(video_file, quote=True)
                 downloading_message.delete()
                 os.remove(video_file)

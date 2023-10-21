@@ -1,5 +1,7 @@
 import os
 os.system("pip install pyrogram yt_dlp")
+import pyrogram
+import yt_dlp
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from yt_dlp import YoutubeDL

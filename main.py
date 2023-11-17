@@ -8,7 +8,9 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "Hi, please send url to stream it")
-
+@bot.message_handler(commands=['sites'])
+def sites_command_handler(message):
+    bot.reply_to(message, f"`Here is` [supported sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)", disable_web_page_preview=True)
 @bot.message_handler(func=lambda message: True)
 def process_video(message):
     try:
